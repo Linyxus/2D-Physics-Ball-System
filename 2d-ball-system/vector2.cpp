@@ -77,6 +77,13 @@ VecPair split(const Vector2 & obj, const VecPair & base)
 	return VecPair(x * base.first, y * base.second);
 }
 
+Vector2 vectorByMode(const Vector2 & direction, double mode)
+{
+	// Vector2 Ox(1.0, 0);
+	// return Vector2(mode * veccos(direction, Ox), mode * vecsin(direction, Ox));
+	return direction * (1 / direction.mode()) * mode;
+}
+
 Vector2 Vector2::cross() const
 {
 	if (x == 0)

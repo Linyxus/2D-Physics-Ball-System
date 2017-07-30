@@ -17,6 +17,7 @@ double veccos(const Vector2 &, const Vector2 &);
 double vecsin(const Vector2 &, const Vector2 &);
 double vectan(const Vector2 &, const Vector2 &);
 VecPair split(const Vector2 &, const VecPair &);
+Vector2 vectorByMode(const Vector2 &, double);
 
 class Vector2
 {

@@ -18,6 +18,7 @@ vector<pair<int, int>> hitted(const vector<Ball> & balls)
 			}
 		}
 	}
+	return res;
 }
 
 vector<vector<int>> hitted_old(const vector<Ball> & balls)
@@ -82,7 +83,10 @@ BallSystem::BallSystem()
 
 void BallSystem::update(double duration, double timeAtom)
 {
-
+	int cnt = (int)(duration / timeAtom);
+	for (int i = 0; i < cnt; i++)
+		this->calculate(timeAtom);
+	this->calculate(duration - timeAtom * cnt);
 }
 
 void BallSystem::calculate(double timeAtom)
@@ -106,8 +110,20 @@ VecPair BallSystem::getHitOffset(const BallPair & balls)
 
 void BallSystem::handleHit(double timeAtom)
 {
-	// TODO
-	// final code!
+	//unused variable: timeAtom(double)
+	vector<Vector2> offsets;
+	for (int i = 0; i < this->balls.size(); i++) {
+		offsets.push_back(Vector2(0, 0));
+	}
+	vector<pair<int, int>> hits = hitted(this->balls);
+	for (int i = 0; i < hits.size(); i++) {
+		VecPair off = getHitOffset(make_pair(this->balls[hits[i].first], this->balls[hits[i].second]));
+		offsets[hits[i].first] = offsets[hits[i].first] + off.first;
+		offsets[hits[i].second] = offsets[hits[i].second] + off.second;
+	}
+	for (int i = 0; i < this->balls.size(); i++) {
+		this->balls[i].v = this->balls[i].v + offsets[i];
+	}
 }
 
 void BallSystem::handleMove(double timeAtom)

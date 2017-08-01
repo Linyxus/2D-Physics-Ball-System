@@ -1,5 +1,6 @@
 #include <iostream>
 #include "vector2.h"
+#include "ball-system.h"
 using namespace std;
 
 ostream & operator<<(ostream & out, const Vector2 & obj)

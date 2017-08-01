@@ -22,6 +22,12 @@ struct Position
 	double x, y;
 };
 
+struct ForceField
+{
+	Position source;
+	double strength;
+};
+
 typedef pair<Ball, Ball> BallPair;
 struct Ball
 {
@@ -30,12 +36,6 @@ struct Ball
 	double m;
 	Vector2 v;
 	ForceField bindedForce;
-};
-
-struct ForceField
-{
-	Position source;
-	double strength;
 };
 
 class BallSystem
